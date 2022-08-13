@@ -4,11 +4,15 @@
     border-radius: 10%;
     color: whitesmoke;
     font-weight: 700;
-    border: 1px solid black;
+    border: 3px solid whitesmoke;
 }
 .ui.secondary.pointing.menu{
     background: linear-gradient(to top left, #4ca1af , whitesmoke );
     border: 2px solid #f3f3f3;
     box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.6);
     outline: none;
+}
+
+.ui.item.active{
+    border-color: #193b55 !important;
 }

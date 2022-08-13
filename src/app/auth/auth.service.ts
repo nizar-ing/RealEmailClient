@@ -8,8 +8,18 @@ interface SignupCredentials {
   password: string,
   passwordConfirmation: string
 }
-interface SignupResponse {
+interface SignInOrSignUpResponse {
   username: string
+}
+
+interface SignedInResponse {
+  authenticated: true,
+  username: string
+}
+
+interface SigninCredentials{
+  username: string,
+  password: string
 }
 
 @Injectable({
@@ -29,12 +39,39 @@ export class AuthService {
   }
 
   signup(credentials: SignupCredentials){
-    return this.http.post<SignupResponse>(
-      `${this.endpointUrl}/auth/signup`,
-      credentials
+    return this.http.post<SignInOrSignUpResponse>(
+      `${this.endpointUrl}/auth/signup`, credentials
     ).pipe(
       tap(() => {
         this.signedin$.next(true);
+      })
+    );
+  }
+
+  checkAuth(){
+    return this.http.get<SignedInResponse>(`${this.endpointUrl}/auth/signedin`)
+    .pipe(
+      tap(({authenticated}) => {
+        this.signedin$.next(authenticated);
+      })
+    );
+  }
+
+  signin(credentials: SigninCredentials){
+    return this.http.post(
+      `${this.endpointUrl}/auth/signin`, credentials
+    ).pipe(
+      tap(() => {
+        this.signedin$.next(true);
+      })
+    );
+  }
+
+  signout(){
+    return this.http.post<SignedInResponse>(`${this.endpointUrl}/auth/signout`, {})
+    .pipe(
+      tap(() => {
+        this.signedin$.next(false);
       })
     );
   }

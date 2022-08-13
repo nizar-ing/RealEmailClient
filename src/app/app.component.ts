@@ -20,4 +20,9 @@ export class AppComponent {
   //     this.signedin = singnedin;
   //   });
   // }
+
+  ngOnInit(){
+    this.authService.checkAuth().subscribe(() => {});
+  }
+
 }
