@@ -15,7 +15,7 @@ export class SigninComponent implements OnInit {
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(20),
-      Validators.pattern(/^[a-z0-9]+$/)
+      Validators.pattern(/^[a-zA-Z0-9]+$/)
     ]),
     password: new FormControl('', [
       Validators.required,

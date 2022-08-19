@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
+import { catchError, EMPTY } from 'rxjs';
 import { Email } from './email';
 import { EmailService } from './email.service';
 
@@ -9,7 +9,7 @@ import { EmailService } from './email.service';
 })
 export class EmailResolverService implements Resolve<Email> {
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService, private router: Router) { }
 
    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
      const { id } = route.params;

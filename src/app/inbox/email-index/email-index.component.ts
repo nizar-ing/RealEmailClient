@@ -10,10 +10,12 @@ export class EmailIndexComponent implements OnInit {
 
   emails = [];
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService) { 
+  }
 
   ngOnInit(): void {
     this.emailService.getEmails().subscribe((emails) => {
+      //console.log(emails);
       this.emails = emails;
     });
   }
