@@ -1,1 +1,8 @@
-<p>email-create works!</p>
+<button class="ui button teal fluid" (click)="showModel = true">
+    <i class="edit icon"></i>
+    New Email
+</button>
+<app-modal (dismiss)="showModel = false" *ngIf="showModel">
+    <div modalTitle>Compose</div>
+    <app-email-form [email]="email" (emailSubmit)="onSubmit($event)" ></app-email-form>
+</app-modal>

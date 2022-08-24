@@ -1,7 +1,11 @@
-.brain{
+.logoBrain{
+    width: 80px !important;
+    height: 40px !important;
+}
+.textBrain{
     background-color: crimson;
     padding: 10px 15px;
-    border-radius: 10%;
+    border-radius: 50%;
     color: whitesmoke;
     font-weight: 700;
     border: 3px solid whitesmoke;
@@ -16,3 +20,5 @@
 .ui.item.active{
     border-color: #193b55 !important;
 }
+
+

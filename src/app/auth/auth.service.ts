@@ -29,6 +29,7 @@ export class AuthService {
 
   endpointUrl: string = 'https://api.angular-email.com';
   signedin$ = new BehaviorSubject(null);
+  username: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -42,8 +43,9 @@ export class AuthService {
     return this.http.post<SignInOrSignUpResponse>(
       `${this.endpointUrl}/auth/signup`, credentials
     ).pipe(
-      tap(() => {
+      tap(({username}) => {
         this.signedin$.next(true);
+        this.username = username;
       })
     );
   }
@@ -51,22 +53,24 @@ export class AuthService {
   checkAuth(){
     return this.http.get<SignedInResponse>(`${this.endpointUrl}/auth/signedin`)
     .pipe(
-      tap(({authenticated}) => {
+      tap(({authenticated, username}) => {
         this.signedin$.next(authenticated);
+        this.username = username;
       })
     );
   }
 
   signin(credentials: SigninCredentials){
-    return this.http.post(
+    return this.http.post<SignInOrSignUpResponse>(
       `${this.endpointUrl}/auth/signin`, credentials
     ).pipe(
-      tap(() => {
+      tap(({username}) => {
         this.signedin$.next(true);
+        this.username = username;
       })
     );
   }
-
+  
   signout(){
     return this.http.post<SignedInResponse>(`${this.endpointUrl}/auth/signout`, {})
     .pipe(

@@ -1,1 +1,8 @@
-<p>email-reply works!</p>
+<button class="ui circular button red" (click)="showModel = true">
+    <i class="envelope icon"></i> 
+    Reply
+</button>
+<app-modal (dismiss)="showModel = false" *ngIf="showModel">
+    <div modalTitle>Reply</div>
+    <app-email-form [email]="email" (emailSubmit)="onSubmit($event)" ></app-email-form>
+</app-modal>

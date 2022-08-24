@@ -1,13 +1,16 @@
 <div class="header">
     <div>
         <h3>{{email.subject}}</h3>
-        <div>
-            FROM: <i>{{email.from}}</i> 
+        <div class="from">
+           <span>FROM :</span><i>{{email.from}}</i> 
         </div>
-        <div>
-            TO: <i>{{email.to}}</i>
-        </div>
+        <div class="to">
+            <div class="destinator">
+                <span>TO :</span> <i>{{email.to}}</i>
+            </div>
+           <app-email-reply [email]="email"></app-email-reply>
+        </div>   
     </div>
-    <div class="ui divider"></div>
-    <div [innerHTML]="email.html"></div>
-</div>
+</div>   
+<div class="ui divider"></div>
+<div class="contenu" [innerHTML]="email.html"></div>
